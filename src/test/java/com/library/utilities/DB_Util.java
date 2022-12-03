@@ -40,9 +40,9 @@ public class DB_Util {
      */
     public static void createConnection(){
 
-        String url      = "jdbc:oracle:thin:@3.85.103.221:1521:XE"; ;
-        String username = "hr" ;
-        String password = "hr" ;
+        String url      = ConfigurationReader.getProperty("library2.db.url") ;
+        String username = ConfigurationReader.getProperty("library2.db.username") ;
+        String password = ConfigurationReader.getProperty("library2.db.password") ;
 
         createConnection(url, username, password);
 
