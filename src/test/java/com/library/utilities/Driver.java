@@ -20,7 +20,7 @@ public class Driver {
 
 
     // creating a reusable method which will return the same driver instance when we call it
-    public static WebDriver getDriverPool(){
+    public static WebDriver getDriver(){
         if (driverPool.get() == null){
             String browserType = ConfigurationReader.getProperty("browser");
 
