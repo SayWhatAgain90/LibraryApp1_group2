@@ -13,19 +13,19 @@ import org.openqa.selenium.TakesScreenshot;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
-//    @Before
-//    public void setupScenario(){
-//        System.out.println("Setting up browser using cucumber @Before each scenario");
-//        Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//        Driver.getDriver().get(ConfigurationReader.getProperty("library_url"));
-//    }
+    @Before("@wip")
+    public void setupScenario() {
+        System.out.println("Setting up browser using cucumber @Before each scenario");
+        Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Driver.getDriver().get(ConfigurationReader.getProperty("library_url"));
+    }
 
 
     @After
-    public void teardownScenario(Scenario scenario){
+    public void teardownScenario(Scenario scenario) {
         //if (scenario.isFailed()) {
-            byte[] screenShot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
-            scenario.attach(screenShot, "image/png", scenario.getName());
+        byte[] screenShot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenShot, "image/png", scenario.getName());
         //}
 
 
@@ -34,23 +34,17 @@ public class Hooks {
 
 
     @Before("@db")
-    public void setUpDB(){
+    public void setUpDB() {
         DB_Util.createConnection();
         System.out.println("Connecting to database...");
     }
 
 
     @After("@db")
-    public void destroyDB(){
+    public void destroyDB() {
         DB_Util.destroy();
         System.out.println("Closing connection...");
     }
-
-
-
-
-
-
 
 
 //    //@Before (value = "@login")

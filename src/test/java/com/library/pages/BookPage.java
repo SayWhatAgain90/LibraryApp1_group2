@@ -1,6 +1,7 @@
 package com.library.pages;
 
 import com.library.utilities.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -36,6 +37,13 @@ public WebElement isbn;
 
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement saveButton;
+
+    @FindBy(css = "input[type='search']")
+    public WebElement searchBox;
+
+    public WebElement editBook(String bookName){
+        return Driver.getDriver().findElement(By.xpath("//td[3][.='" + bookName + "']/../td/a"));
+    }
 
     public void chooseCategory(String categoryName){
         Select select = new Select(categoryDropdown);
