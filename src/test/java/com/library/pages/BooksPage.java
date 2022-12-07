@@ -7,9 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
-public class BookPage extends BasePage{
+public class BooksPage extends BasePage{
 
-    public BookPage() {
+    public BooksPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -32,7 +32,7 @@ public WebElement isbn;
     @FindBy(xpath = "//textarea[@name='description']")
     public WebElement description;
 
-    @FindBy(xpath = "//select[@id='book_group_id']")
+    @FindBy(id="book_categories")
     public WebElement categoryDropdown;
 
     @FindBy(xpath = "//button[@type='submit']")
@@ -41,13 +41,26 @@ public WebElement isbn;
     @FindBy(css = "input[type='search']")
     public WebElement searchBox;
 
+    @FindBy(xpath = "(//a[@class='btn btn-primary btn-sm  '])[1]")
+    public WebElement borrowBook;
+
+
+
+    public void expandSearchResult(String numberOfRows){
+        // parameter can be only 5,10,15,50,100 or 200
+        Select select = new Select(Driver.getDriver().findElement(By.xpath("//select[@name='tbl_books_length']")));
+
+        select.selectByVisibleText(numberOfRows);
+    }
+
     public WebElement editBook(String bookName){
         return Driver.getDriver().findElement(By.xpath("//td[3][.='" + bookName + "']/../td/a"));
     }
 
-    public void chooseCategory(String categoryName){
+        public void chooseCategory(String categoryName){
         Select select = new Select(categoryDropdown);
 
         select.selectByVisibleText(categoryName);
+
     }
 }

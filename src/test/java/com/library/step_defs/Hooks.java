@@ -13,7 +13,7 @@ import org.openqa.selenium.TakesScreenshot;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
-    @Before("@wip")
+    @Before()
     public void setupScenario() {
         System.out.println("Setting up browser using cucumber @Before each scenario");
         Driver.getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
