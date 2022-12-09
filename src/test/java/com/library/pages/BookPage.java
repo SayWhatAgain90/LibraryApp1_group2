@@ -1,11 +1,17 @@
 package com.library.pages;
 
 import com.library.utilities.Driver;
+import io.cucumber.java.eo.Se;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class BookPage extends BasePage{
 
@@ -50,4 +56,36 @@ public WebElement isbn;
 
         select.selectByVisibleText(categoryName);
     }
-}
+
+
+    @FindBy(id = "book_categories")
+    public WebElement mainCategoryElement;
+
+
+    public static List<String> dropdownOptionsAsString(WebElement dropdownElement) {
+
+        Select select = new Select(dropdownElement);
+
+        //List of all ACTUAL month <options> as a WebElement
+        List<WebElement> actualOptionsAsWebElement = select.getOptions();
+
+        //List of all ACTUAL month options as a String
+        List<String> actualOptionsAsString = new ArrayList<>();
+
+        // with using for loop we will convert each WebElement of options to String with using getText() method
+        // with using add() method we will add each String option in List<String> actual options as String
+        for (WebElement each : actualOptionsAsWebElement) {
+            actualOptionsAsString.add(each.getText());
+        }
+        actualOptionsAsString.remove(0);
+
+        return actualOptionsAsString;
+
+    }
+
+    @FindBy (xpath = "//table/tbody/tr/td[3]")
+    public WebElement authorName;
+
+    }
+
+
