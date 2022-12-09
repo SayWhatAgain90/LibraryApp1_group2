@@ -30,6 +30,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//a[@class='dropdown-item']")
     public WebElement logoutBtn;
 
+    @FindBy(xpath = "//span[.='Borrowing Books']")
+    public WebElement borrowingBooks;
+
    public void logout(){
        accountName.click();
        logoutBtn.click();
