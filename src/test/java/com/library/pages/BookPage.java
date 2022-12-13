@@ -79,4 +79,11 @@ public class BookPage extends BasePage {
 
     @FindBy (xpath = "//table/tbody/tr/td[3]")
     public WebElement authorName;
+
+    public void expandSearchResult(String numberOfRows){
+        // parameter can be only 5,10,15,50,100 or 200
+        Select select = new Select(Driver.getDriver().findElement(By.xpath("//select[@name='tbl_books_length']")));
+
+        select.selectByVisibleText(numberOfRows);
+    }
 }
