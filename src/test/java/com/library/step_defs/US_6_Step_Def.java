@@ -1,6 +1,6 @@
 package com.library.step_defs;
 
-import com.library.pages.BooksPage;
+import com.library.pages.BookPage;
 import com.library.pages.LoginPage;
 import com.library.utilities.BrowserUtils;
 import com.library.utilities.ConfigurationReader;
@@ -15,7 +15,7 @@ public class US_6_Step_Def {
 
     LoginPage loginPage = new LoginPage();
 
-    BooksPage booksPage = new BooksPage();
+    BookPage bookPage = new BookPage();
     @Given("I login as a librarian")
     public void iLoginAsALibrarian() {
         loginPage.login(ConfigurationReader.getProperty("librarian_username"), ConfigurationReader.getProperty("librarian_password"));
@@ -28,47 +28,47 @@ public class US_6_Step_Def {
 
     @When("the librarian click to add book")
     public void theLibrarianClickToAddBook() {
-        booksPage.addBook.click();
+        bookPage.addBook.click();
     }
 
     @And("the librarian enter book name {string}")
     public void theLibrarianEnterBookName(String name) {
-        booksPage.bookName.sendKeys(name);
+        bookPage.bookName.sendKeys(name);
     }
 
     @When("the librarian enter ISBN {string}")
     public void theLibrarianEnterISBN(String isbn) {
-        booksPage.isbn.sendKeys(isbn);
+        bookPage.isbn.sendKeys(isbn);
     }
 
     @And("the librarian enter year {string}")
     public void theLibrarianEnterYear(String year) {
-        booksPage.year.sendKeys(year);
+        bookPage.year.sendKeys(year);
     }
 
     @When("the librarian enter author {string}")
     public void theLibrarianEnterAuthor(String author) {
-        booksPage.author.sendKeys(author);
+        bookPage.author.sendKeys(author);
     }
 
     @And("the librarian choose the book category {string}")
     public void theLibrarianChooseTheBookCategory(String category) {
-        booksPage.chooseCategory(category);
+        bookPage.chooseCategory(category);
     }
 
     @And("the librarian click to save changes")
     public void theLibrarianClickToSaveChanges() {
-        booksPage.saveButton.click();
+        bookPage.saveButton.click();
         BrowserUtils.waitFor(2);
     }
 
     @Then("the librarian verify new book by {string}")
     public void theLibrarianVerifyNewBookBy(String expectedBookName) {
-        booksPage.searchBox.sendKeys(expectedBookName);
+        bookPage.searchBox.sendKeys(expectedBookName);
         BrowserUtils.waitFor(2);
-        booksPage.editBook(expectedBookName).click();
+        bookPage.editBook(expectedBookName).click();
 
-        String actualBookName = booksPage.bookName.getAttribute("value");
+        String actualBookName = bookPage.bookName.getAttribute("value");
        Assertions.assertEquals(expectedBookName, actualBookName);
 
 

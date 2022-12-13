@@ -1,5 +1,6 @@
 package com.library.step_defs;
 
+import com.library.pages.BookPage;
 import com.library.pages.BooksPage;
 import com.library.pages.BorrowingBooksPage;
 import com.library.pages.LoginPage;
@@ -19,7 +20,7 @@ import java.util.Map;
 
 public class US_7_Steps_Def {
     LoginPage loginPage = new LoginPage();
-    BooksPage booksPage = new BooksPage();
+    BookPage bookPage = new BookPage();
     BorrowingBooksPage borrowingBooksPage = new BorrowingBooksPage();
 
     String bookName;
@@ -32,8 +33,8 @@ public class US_7_Steps_Def {
     @Given("I search book name called {string}")
     public void i_search_book_name_called(String bookName) {
         this.bookName = bookName;
-        booksPage.searchBox.sendKeys(bookName);
-        booksPage.expandSearchResult("50");
+        bookPage.searchBox.sendKeys(bookName);
+        bookPage.expandSearchResult("50");
         BrowserUtils.waitFor(1);
 
     }
@@ -41,15 +42,15 @@ public class US_7_Steps_Def {
     @When("I click Borrow Book")
     public void i_click_borrow_book() {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);", booksPage.borrowBook);
-        js.executeScript("arguments[0].click();", booksPage.borrowBook);
+        js.executeScript("arguments[0].scrollIntoView(true);", bookPage.borrowBook);
+        js.executeScript("arguments[0].click();", bookPage.borrowBook);
 
-       //booksPage.borrowBook.click();
+       //bookPage.borrowBook.click();
     }
 
     @Then("verify that book is shown in {string} page")
     public void verify_that_book_is_shown_in_borrowing_books_page(String pageName) {
-        booksPage.navigateMenu(pageName);
+        bookPage.navigateMenu(pageName);
         Assertions.assertEquals(bookName, borrowingBooksPage.bookToReturn.getText());
 
 
