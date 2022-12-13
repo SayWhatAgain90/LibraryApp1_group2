@@ -44,6 +44,9 @@ public class BookPage extends BasePage {
     @FindBy(css = "input[type='search']")
     public WebElement searchBox;
 
+    @FindBy(xpath = "(//a[@class='btn btn-primary btn-sm  '])[1]")
+    public WebElement borrowBook;
+
     public WebElement editBook(String bookName) {
         return Driver.getDriver().findElement(By.xpath("//td[3][.='" + bookName + "']/../td/a"));
     }
