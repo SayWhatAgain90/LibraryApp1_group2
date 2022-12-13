@@ -26,6 +26,7 @@ public class US3_StepDef {
         expectedResult = bookPage.dropdownOptionsAsString(bookPage.mainCategoryElement);
 
 
+
     }
     @When("I execute query to get book categories")
     public void i_execute_query_to_get_book_categories() {
