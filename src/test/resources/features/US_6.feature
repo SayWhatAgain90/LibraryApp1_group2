@@ -1,6 +1,6 @@
 Feature: As a librarian, I should be able to add new books to the library
 
-@US6 @db
+  @Regression @US6 @db
   Scenario Outline: Verify added book is matching with DB
     Given I login as a librarian
     And I navigate to "Books" page

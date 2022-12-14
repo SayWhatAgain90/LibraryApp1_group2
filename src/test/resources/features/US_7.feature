@@ -1,5 +1,5 @@
 Feature: As a student, I should be able to borrow a book
-  @US7 @db
+  @Regression @US7 @db
   Scenario: Students borrow new books
     Given I login as a student
     And I navigate to "Books" page
